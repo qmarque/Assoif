@@ -1,20 +1,43 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Assoif{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block contenu %}
+
+
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/mathi/Desktop/Assoif/src/Controller/AssoifController.php'|file_link(0) }}">src/Controller/AssoifController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/mathi/Desktop/Assoif/templates/assoif/index.html.twig'|file_link(0) }}">templates/assoif/index.html.twig</a></code></li>
-    </ul>
+   <center> 
+    <h2>Qui êtes-vous ?</h2>
+      <br>
+   <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-3">
+			 
+			<button type="button" class="btn btn-primary">
+				Assoiffé (client)
+			</button>
+		</div>
+		<div class="col-md-3">
+			 
+			<button type="button" class="btn btn-primary">
+				Assoiffeur (établissement)
+			</button>
+		</div>
+		<div class="col-md-3">
+		</div>
+    </div>
+  <br><br>
+	<div class="row">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-secondary">
+				S'inscrire
+			</button>
+		</div>
+    </div>
+</center>
+</div>
 </div>
 {% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{asset('/css/fontello.css')}}">
+
+    <title>{% block titrePage %}Assoif{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+{% block entete %}
+
+<body>
+    <div class="" container-fluid"">
+        <div class="row">
+            <div class="col-md-12 col-sm-24 col-xs-48">
+                <!-- Zone haute du site -->
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://cdn.pixabay.com/photo/2017/08/28/13/30/beer-2689537_960_720.jpg"
+                                class="d-block w-100" style="width:auto; height:300px; ">
+                            <div class="carousel-caption" style="vertical-align: text-top">
+                                <h1 style="color: black; font-family: 'Geneva'; font-size: 120px">Assoif</h1>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+               
+
+{% endblock %}
+<!-- BLOC DU MENU -->
+{% block menu %}
+
+{% endblock %}
+{% block contenu %}
+{% endblock %}
+
+
+
+{% block footer %}
+
+{% endblock %}
+
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>
