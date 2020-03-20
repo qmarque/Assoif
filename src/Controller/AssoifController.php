@@ -26,4 +26,14 @@ class AssoifController extends AbstractController
             'controller_name' => 'AssoifController',
         ]);
     }
+
+    /**
+     * @Route("/assoiffe", name="assoiffe_accueil")
+     */
+    public function accueil_Assoiffe()
+    {
+        return $this->render('assoiffe/baseassoiffe.html.twig', [
+            'controller_name' => 'AssoifController',
+        ]);
+    }
 }
