@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AssoifController extends AbstractController
 {
     /**
-     * @Route("/assoif", name="assoif")
+     * @Route("/", name="assoif")
      */
     public function index()
     {
