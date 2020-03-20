@@ -22,7 +22,7 @@ class AssoifController extends AbstractController
      */
     public function accueil_Assoiffeur()
     {
-        return $this->render('assoiffeur/index.html.twig', [
+        return $this->render('assoiffeur/baseassoiffeur.html.twig', [
             'controller_name' => 'AssoifController',
         ]);
     }
