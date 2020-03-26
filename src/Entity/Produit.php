@@ -29,7 +29,7 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $dosage;
 
@@ -57,6 +57,12 @@ class Produit
      * @ORM\ManyToMany(targetEntity="App\Entity\Assoiffeur", inversedBy="produits")
      */
     private $assoiffeur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeProduit", inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $typeproduit;
 
     public function __construct()
     {
@@ -93,12 +99,12 @@ class Produit
         return $this;
     }
 
-    public function getDosage(): ?int
+    public function getDosage(): ?string
     {
         return $this->dosage;
     }
 
-    public function setDosage(int $dosage): self
+    public function setDosage(string $dosage): self
     {
         $this->dosage = $dosage;
 
@@ -189,6 +195,18 @@ class Produit
         if ($this->assoiffeur->contains($assoiffeur)) {
             $this->assoiffeur->removeElement($assoiffeur);
         }
+
+        return $this;
+    }
+
+    public function getTypeproduit(): ?TypeProduit
+    {
+        return $this->typeproduit;
+    }
+
+    public function setTypeproduit(?TypeProduit $typeproduit): self
+    {
+        $this->typeproduit = $typeproduit;
 
         return $this;
     }

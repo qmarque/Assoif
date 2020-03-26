@@ -26,6 +26,7 @@ class AssoifController extends AbstractController
             'controller_name' => 'AssoifController',
         ]);
     }
+    //aller chercher info avec serveur http
 
     /**
      * @Route("/assoiffe", name="assoiffe_accueil")
@@ -36,4 +37,6 @@ class AssoifController extends AbstractController
             'controller_name' => 'AssoifController',
         ]);
     }
+
+
 }
