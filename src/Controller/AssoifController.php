@@ -16,17 +16,17 @@ class AssoifController extends AbstractController
             'controller_name' => 'AssoifController',
         ]);
     }
+    
+    #/**
+    # * @Route("/assoiffeur", name="assoiffeur_accueil")
+    # */
+    #public function accueil_Assoiffeur()
+    #{
+    #    return $this->render('assoiffeur/baseassoiffeur.html.twig', [
+    #       'controller_name' => 'AssoifController',
+    #    ]);
+    #}
 
-    /**
-     * @Route("/assoiffeur", name="assoiffeur_accueil")
-     */
-    public function accueil_Assoiffeur()
-    {
-        return $this->render('assoiffeur/baseassoiffeur.html.twig', [
-            'controller_name' => 'AssoifController',
-        ]);
-    }
-    //aller chercher info avec serveur http
 
     /**
      * @Route("/assoiffe", name="assoiffe_accueil")
