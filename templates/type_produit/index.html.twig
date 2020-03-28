@@ -1,6 +1,5 @@
 {% extends 'assoiffeur/baseassoiffeur.html.twig' %}
 
-{% block title %}TypeProduit index{% endblock %}
 
 {% block contenu %}
     <h1>TypeProduit index</h1>
@@ -8,19 +7,17 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for type_produit in type_produits %}
             <tr>
-                <td>{{ type_produit.id }}</td>
                 <td>{{ type_produit.nom }}</td>
                 <td>
-                    <a href="{{ path('type_produit_show', {'id': type_produit.id}) }}">show</a>
-                    <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">edit</a>
+                    <a href="{{ path('type_produit_show', {'id': type_produit.id}) }}">Consulter</a>
+                    <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +28,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('type_produit_new') }}">Create new</a>
+    <a href="{{ path('type_produit_new') }}">Créer un nouveau type de produit</a>
 {% endblock %}
