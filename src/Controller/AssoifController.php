@@ -29,11 +29,22 @@ class AssoifController extends AbstractController
 
 
     /**
-     * @Route("/assoiffe", name="assoiffe_accueil")
+     * @Route("/assoiffe/a", name="assoiffe_accueil")
      */
     public function accueil_Assoiffe()
     {
         return $this->render('assoiffe/baseassoiffe.html.twig', [
+            'controller_name' => 'AssoifController',
+        ]);
+    }
+
+
+    /**
+     * @Route("/assoiffe", name="map")
+     */
+    public function map()
+    {
+        return $this->render('assoiffe/map.html.twig', [
             'controller_name' => 'AssoifController',
         ]);
     }
