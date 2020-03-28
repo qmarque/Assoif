@@ -1,26 +1,38 @@
 {% extends 'assoiffeur/baseassoiffeur.html.twig' %}
 
-{% block titrePage %}Types de produits{% endblock %}
+{% block titrePage %}
+Types de produits
+{% endblock %}
 
 {% block contenu %}
-    <h1>TypeProduit</h1>
+<h1>TypeProduit</h1>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+        </tr>
+    </thead>
+    <tbody>
+        <td>
+            {{ type_produit.nom }}
+        </td>
+           
+        <tr>
+          <td><h3>Produits</h3> </td>  
+            {% for produit_Courant in type_produit.produits %}
+            
+            <td>
+                <a href="{{path('produit_show',{id:produit_Courant.id},{produits:produit_Courant.nom})}}">
+                    {{ produit_Courant.nom }}
+                </a>
+            </td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>  
+<a href="{{ path('type_produit_index') }}">Revenir à la liste des types de produits</a> <br>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ type_produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ type_produit.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
+<a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
 
-    <a href="{{ path('type_produit_index') }}">Revenir à la liste des types de produits</a>
-
-    <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
-
-    {{ include('type_produit/_delete_form.html.twig') }}
+{{ include('type_produit/_delete_form.html.twig') }}
 {% endblock %}
