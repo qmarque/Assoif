@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    
     <meta charset="utf8" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     <style type="text/css">
@@ -22,7 +22,7 @@
         }
     </style>
     <script>
-        var objLocation, objMaps, objCurrentLocationMarker, objInfoWindow,objService;
+        var objLocation, objMaps, objCurrentLocationMarker, objInfoWindow, objService;
         
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -49,65 +49,22 @@
                     objInfoWindow.open(objMaps, this);
                 });
                 
-                objInfoWindow = new google.maps.InfoWindow();
-                objService = new google.maps.places.PlacesServiceStatus.objMaps;
                 
-                google.maps.event.addListenerOnce(objMaps, 'bounds_changed', doSearch);
-                doSearch();
+                objInfoWindow = new google.maps.InfoWindow()
+                
+                
             }, function(msg) {
                 alert("Erreur : " + msg);
             });
-        }
-        
-        function doSearch() {
-            objService.nearbySearch({
-                location: objLocation,
-                radius: 1000,
-                types: ['restaurant', 'bar']
-            }, function(results, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                    }       
-                } 
-            });
-        }
-        
-        function createMarker(objPlace) {
-            if (objPlace.types[0] !== "bar" && objPlace.types[0] !== "restaurant" &&
-            objPlace.types[0] !== "cafe") {
-                return;   
-            }
-            
-            var objMarker = new google.maps.Marker({
-                position: objPlace.geometry.location,
-                map: objMaps,
-                icon: "http://www.google.com/mapfiles/ms/micons/purple-dot.png",
-                title: objPlace.name
-            });
-            
-            google.maps.event.addListener(objMarker, 'click', function() {
-                var strHTML = "<b>" + objPlace.name + "</b><br />";
-                if (objPlace.types[0] == "bar") {
-                    strHTML += "Bistrot";
-                } else if (objPlace.types[0] == "cafe") {
-                    strHTML += "Café";
-                } else if (objPlace.types[0] == "restaurant") {
-                    strHTML += "Resto";      
-                } else {
-                    strHTML += "Inconnu (" + objPlace.types[0] + ")";   
-                }
-                
-                objInfoWindow.setContent(strHTML);
-                objInfoWindow.open(objMaps, this);
-            }); 
+           
         }
     </script>
 </head>
 <body>
     <center>
-        <h2>Veuillez choisir un établissement</h2>
+        <div> <h2>Veuillez choisir un établissement</h2></div>
+        
+        <div id="maps"></div>
     </center>
-    <div id="maps"></div>
 </body>
 </html>

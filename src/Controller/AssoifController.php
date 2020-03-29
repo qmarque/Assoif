@@ -29,7 +29,7 @@ class AssoifController extends AbstractController
 
 
     /**
-     * @Route("/assoiffe/a", name="assoiffe_accueil")
+     * @Route("/assoiffe/accueil", name="assoiffe_accueil")
      */
     public function accueil_Assoiffe()
     {
