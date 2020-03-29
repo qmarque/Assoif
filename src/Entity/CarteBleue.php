@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Entity;
+
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
 * @ORM\Entity(repositoryClass="App\Repository\CarteBleueRepository")
@@ -26,14 +29,13 @@ class CarteBleue
     /**
     * @ORM\Column(type="integer")
     * @Assert\NotBlank
-    * @Assert\Regex(pattern="# [0-9]{16} #",message="Il semble y avoir un problème avec le numéro")
+    * @Assert\Regex(pattern="#[0-9]{16}#",message="Ce numéro doit posséder 16 chiffres")
     */
     private $numero;
     
     /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="date")
     * @Assert\NotBlank
-    * @Assert\Regex(pattern="# [0-9]{4} #",message="Il semble y avoir un problème avec la date d'expiration (mm-yy")
     
     */
     private $dateExpiration;
@@ -41,7 +43,7 @@ class CarteBleue
     /**
     * @ORM\Column(type="integer")
     * @Assert\NotBlank
-    * @Assert\Regex(pattern="# [0-9]{3} #",message="Il semble y avoir un problème avec le cryptogamme")
+    * @Assert\Regex(pattern="#[0-9]{3}#",message="Le cryptogamme doit posséder 3 chiffres")
     */
     private $cryptogramme;
     
