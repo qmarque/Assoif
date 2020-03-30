@@ -36,11 +36,6 @@ class Assoiffeur
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mdpProvisoire;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $adresse;
 
     /**
@@ -74,14 +69,9 @@ class Assoiffeur
     private $logo;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $periodeFermeture;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $bd;
+    private $periodeFermeture;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Produit", mappedBy="assoiffeur")
@@ -247,12 +237,12 @@ class Assoiffeur
         return $this;
     }
 
-    public function getPeriodeFermeture(): ?\DateTimeInterface
+    public function getPeriodeFermeture(): ?string
     {
         return $this->periodeFermeture;
     }
 
-    public function setPeriodeFermeture(\DateTimeInterface $periodeFermeture): self
+    public function setPeriodeFermeture(string $periodeFermeture): self
     {
         $this->periodeFermeture = $periodeFermeture;
 

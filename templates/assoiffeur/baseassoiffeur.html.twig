@@ -52,34 +52,7 @@
                   
                 </ul>
 
-                <ul class="navbar-nav ml-md-auto">
 
-
-                  {% if is_granted('ROLE_USER') %}
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                      {{ app.user.prenom }} {{ app.user.nom }}
-                      <i class="icon-user"></i>
-                      Déconnexion
-                      <span class="sr-only">(current)</span></a>
-                  </li>
-                  {% else %}
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                      Inscription
-                      <span class="sr-only">(current)</span></a>
-                  </li>
-
-
-                  <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                      <i class="icon-user"></i>
-                      Connexion
-                      <span class="sr-only">(current)</span></a>
-                  </li>
-
-                  {% endif %}
-                </ul>
 
               </div>
             </nav>

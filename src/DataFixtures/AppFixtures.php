@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 use App\Entity\Produit;
 use App\Entity\TypeProduit;
+use App\Entity\Assoiffeur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -11,9 +12,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = \Faker\Factory::create('fr_FR');
-        
-        
-        
+            
         $cidre = new TypeProduit();
         $cidre -> setNom('Cidres');
         $manager->persist($cidre);
@@ -48,9 +47,35 @@ class AppFixtures extends Fixture
         
         $tabTypeProduit = array ($biere,$boissonsChaudes,$boissonsRafraichissantes,$cidre,$cocktail,$digestifs,$sirop,$vin);
         
-        
-        
-        
+        $Restaurant = new Assoiffeur();
+        $Restaurant -> setNom('Chez Philou');
+        $Restaurant -> setEmail('chezPhilou@pro.com');
+        $Restaurant -> setMdp('philou');
+        $Restaurant -> setAdresse($faker->address);
+        $Restaurant -> setVille('Pontacq');
+        $Restaurant -> setNomGerant('Philou');
+        $Restaurant -> setSiegeSocial('EURL');
+        $Restaurant -> setSiret(3625218);       
+        $Restaurant -> setSiren(362521879);
+        $Restaurant -> setLogo('cacahuete');
+        $Restaurant -> setPeriodeFermeture($faker->date);
+        $manager->persist($Restaurant);
+    
+        $Bar = new Assoiffeur();
+        $Bar -> setNom('Chez Mamailda');
+        $Bar -> setEmail('chezMamailda@pro.com');
+        $Bar -> setMdp('mamailda');
+        $Bar -> setAdresse($faker->address);
+        $Bar -> setVille('Pontacq');
+        $Bar -> setNomGerant('MamaIlda');
+        $Bar -> setSiegeSocial('EURL');
+        $Bar -> setSiret(3625217);       
+        $Bar -> setSiren(362571879);
+        $Bar -> setLogo('prune');
+        $Bar -> setPeriodeFermeture($faker->date);
+        $manager->persist($Bar);
+
+        $tabAssoiffeur= array ($Restaurant,$Bar);
         
         if (($handle = fopen(dirname(__FILE__)."\boissons.csv", "r")) !== FALSE) {
             $row = fgets($handle);
@@ -76,6 +101,16 @@ class AppFixtures extends Fixture
                     // Persister les objets modifiés
                     $manager->persist($tabTypeProduit[$choixTypeProduit]);                    
                     $manager->persist($Unproduit[$i]);
+                    // Sélectionner un type d'assoiffeur au hasard parmi les 2 enregistrées dans $tabAssoiffeur
+                    $choixAssoiffeur = $faker->numberBetween($min = 0,$max = 1);
+                    // Création relation Produit --> assoiffeur
+                    $Unproduit[$i] -> addAssoiffeur($tabAssoiffeur[$choixAssoiffeur]);
+                    // Création relation assoiffeur --> Produit
+                    $tabAssoiffeur[$choixAssoiffeur] -> addProduit($Unproduit[$i]);
+                    // Persister les objets modifiés
+                    $manager->persist($tabAssoiffeur[$choixAssoiffeur]);                    
+                    $manager->persist($Unproduit[$i]);
+                    
                 }
                 
             }
