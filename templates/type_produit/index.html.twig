@@ -56,7 +56,7 @@
             </li>
 
             <li class="nav-item active">
-              <a class="nav-link" href={{path('produit_index')}}>Mes produits </a>
+              <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
             </li>
 
             <li class="nav-item active">
@@ -94,10 +94,16 @@
     <tbody>
         {% for type_produit in typesProduit %}
         <tr>
-            <td>
-            <a href = "{{path('type_produit_show', {id:type_produit.id})}}" style="color:blue; text-decoration:none;">
+        <td>
+        {% if action == "assoiffe" %}
+            <a href = "{{path('produit_par_typeProduit_index_assoiffe',{typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
                 {{ type_produit.nom }}               
             </a>
+        {% else %}
+            <a href = "{{path('produit_par_typeProduit_index_assoiffeur', {typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
+                {{ type_produit.nom }}               
+            </a>
+        {% endif %}
             </td>
             {% if action == "assoiffeur" %}                
             <td> 

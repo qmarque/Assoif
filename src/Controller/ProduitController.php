@@ -10,19 +10,52 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/produit")
- */
 class ProduitController extends AbstractController
 {
+
     /**
-     * @Route("/", name="produit_index", methods={"GET"})
+     * @Route("assoiffeur/produit/", name="produit_index_assoiffeur", methods={"GET"})
      */
-    public function index(ProduitRepository $produitRepository): Response
+    public function indexProduitsAssoiffeur(ProduitRepository $produitRepository): Response
     {
         return $this->render('produit/index.html.twig', [
             'produits' => $produitRepository->findAll(),
+            'action' => "assoiffeur",
         ]);
+    }
+
+
+    /**
+     * @Route("assoiffeur/produit/{typeproduit}", name="produit_par_typeProduit_index_assoiffeur", methods={"GET"})
+     */
+    public function indexProduitsParTypeProduitAssoiffeur(ProduitRepository $produitRepository, $typeproduit): Response
+    {
+        return $this->render('produit/index.html.twig', [
+            'produits' => $produitRepository->findByType($typeproduit),
+            'action' => "assoiffeur",
+        ]);
+        //Récupérer les produits en BD
+        $produits = $repositoryProduit->findByType($typeproduit);
+
+        //Envoyer les produits récupérés à la vue qui a pour but de les afficher
+        return $this->render('produit/index.html.twig', ['produits'=>$produits]);
+    }
+
+
+    /**
+     * @Route("assoiffe/produit/{typeproduit}", name="produit_par_typeProduit_index_assoiffe", methods={"GET"})
+     */
+    public function indexProduitsParTypeProduitAssoiffe(ProduitRepository $produitRepository, $typeproduit): Response
+    {
+        return $this->render('produit/index.html.twig', [
+            'produits' => $produitRepository->findByType($typeproduit),
+            'action' => "assoiffe",
+        ]);
+        //Récupérer les produits en BD
+        $produits = $repositoryProduit->findByType($typeproduit);
+
+        //Envoyer les produits récupérés à la vue qui a pour but de les afficher
+        return $this->render('produit/index.html.twig', ['produits'=>$produits]);
     }
 
     /**

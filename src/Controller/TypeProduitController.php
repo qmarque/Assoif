@@ -36,13 +36,27 @@ class TypeProduitController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/{id}", name="type_produit_show", methods={"GET"})
+     * @Route("assoiffe/produit/{id}", name="type_produit_show_assoiffe", methods={"GET"})
      */
-    public function show(TypeProduit $typeProduit): Response
+    public function showAssoiffe(TypeProduit $typeProduit): Response
     {
         return $this->render('type_produit/show.html.twig', [
             'type_produit' => $typeProduit,
+            'action' => "assoiffe",
+        ]);
+    }
+
+
+    /**
+     * @Route("assoiffeur/produit/{id}", name="type_produit_show_assoiffeur", methods={"GET"})
+     */
+    public function showAssoiffeur(TypeProduit $typeProduit): Response
+    {
+        return $this->render('type_produit/show.html.twig', [
+            'type_produit' => $typeProduit,
+            'action' => "assoiffeur",
         ]);
     }
 

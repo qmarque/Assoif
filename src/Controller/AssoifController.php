@@ -35,18 +35,6 @@ class AssoifController extends AbstractController
     #  {
         #    return $this->render('assoiffeur/baseassoiffeur.html.twig', ['controller_name' => 'AssoifController', ]);
         #  }
-        
-
-        /**
-        * @Route("/assoiffe/produit/{id}", name="show_produit_assoiffe")
-        */
-        public function show_produit_assoiffe(Produit $produit)
-        {
-            return $this->render('produit/show.html.twig', [
-                'produit' => $produit,
-                'action' => "assoiffe",
-            ]);
-        }
 
         
         /**

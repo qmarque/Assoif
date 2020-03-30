@@ -1,4 +1,83 @@
-{% extends 'assoiffeur/baseassoiffeur.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+{% if action == "assoiffe" %}
+<div class="row">
+  <div class="col-md-12">
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item active">
+          <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+        </li>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Mes commandes </a>
+        </li>     
+      </ul>
+      
+      <ul class="navbar-nav ml-md-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/panier">
+            <i class="icon-shopping-basket"></i>
+            Mon panier
+            <span class="sr-only">(current)</span></a>
+          </li>
+          
+          
+        </ul>
+        
+      </div>
+    </nav>
+  </div>
+</div>
+</div>
+ 
+</div>
+
+{% else %}
+<div class="row">
+    <div class="col-md-12">
+      <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+              <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href='#'>Mes promotions</a>
+            </li>
+
+            
+          </ul>
+
+
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endif %}
+
+{% endblock %}
 
 {% block title %}Produit index{% endblock %}
 
@@ -8,11 +87,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Dosage</th>
+                {% if action == "assoiffeur" %}
                 <th>Stock</th>
+                {% endif %}
                 <th>Photo</th>
                 <th>actions</th>
             </tr>
@@ -20,15 +100,18 @@
         <tbody>
         {% for produit in produits %}
             <tr>
-                <td>{{ produit.id }}</td>
                 <td>{{ produit.nom }}</td>
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.dosage }}</td>
+                {% if action == "assoiffeur" %}
                 <td>{{ produit.stock }}</td>
+                {% endif %}
                 <td>{{ produit.photo }}</td>
                 <td>
                     <a href="{{ path('produit_show', {'id': produit.id}) }}">show</a>
+                    {% if action == "assoiffeur" %}
                     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -38,6 +121,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+{% if action == "assoiffeur" %}
     <a href="{{ path('produit_new') }}">Create new</a>
+{% endif %}
+
 {% endblock %}

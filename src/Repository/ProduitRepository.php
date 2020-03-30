@@ -47,4 +47,28 @@ class ProduitRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    /**
+     * @return Produit[] Returns an array of Produit objects
+     */
+
+    public function findByType($typeProduit)
+    {
+        //Récupérer le gestionnaire d'entités
+        $entityManager = $this->getEntityManager();
+
+        //Construction de la requête
+        $request = $entityManager->createQuery(
+            'SELECT p, t
+             FROM App\Entity\Produit p
+             JOIN p.typeproduit t
+             WHERE t.id = :typeProduitId');
+            
+            //Associer le paramètre à la valeur recherchée
+            $request->setParameter('typeProduitId', $typeProduit);
+            
+            //Exécuter la requête et retourner les résultats
+            return $request->execute();
+    }
 }
