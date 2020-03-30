@@ -16,6 +16,7 @@ use App\Entity\Promotion;
 use App\Entity\Satistiques;
 use App\Entity\TypeProduit;
 use App\Form\CarteBleueType;
+use App\Repository\ProduitRepository;
 
 class AssoifController extends AbstractController
 {
@@ -35,23 +36,18 @@ class AssoifController extends AbstractController
         #    return $this->render('assoiffeur/baseassoiffeur.html.twig', ['controller_name' => 'AssoifController', ]);
         #  }
         
-        
+
         /**
-        * @Route("/assoiffe/accueil", name="assoiffe_accueil")
+        * @Route("/assoiffe/produit/{id}", name="show_produit_assoiffe")
         */
-        public function accueil_Assoiffe()
+        public function show_produit_assoiffe(Produit $produit)
         {
-            return $this->render('assoiffe/baseassoiffe.html.twig', ['controller_name' => 'AssoifController',]);
+            return $this->render('produit/show.html.twig', [
+                'produit' => $produit,
+                'action' => "assoiffe",
+            ]);
         }
-        
-        
-        /**
-        * @Route("/assoiffe", name="map")
-        */
-        public function map()
-        {
-            return $this->render('assoiffe/map.html.twig', ['controller_name' => 'AssoifController',]);
-        }
+
         
         /**
         * @Route("/assoiffe/panier", name="panier")

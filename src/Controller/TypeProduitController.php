@@ -10,21 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/assoiffeur")
- */
+
 class TypeProduitController extends AbstractController
 {
-    /**
-     * @Route("/", name="type_produit_index", methods={"GET"})
-     */
-    public function index(TypeProduitRepository $typeProduitRepository): Response
-    {
-        return $this->render('type_produit/index.html.twig', [
-            'type_produits' => $typeProduitRepository->findAll(),
-        ]);
-    }
-
     /**
      * @Route("/new", name="type_produit_new", methods={"GET","POST"})
      */

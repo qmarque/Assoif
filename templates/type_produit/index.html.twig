@@ -1,32 +1,118 @@
-{% extends 'assoiffeur/baseassoiffeur.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block menu %}
+{% if action == "assoiffe" %}
+<div class="row">
+  <div class="col-md-12">
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item active">
+          <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+        </li>
+        
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Mes commandes </a>
+        </li>     
+      </ul>
+      
+      <ul class="navbar-nav ml-md-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/panier">
+            <i class="icon-shopping-basket"></i>
+            Mon panier
+            <span class="sr-only">(current)</span></a>
+          </li>
+          
+          
+        </ul>
+        
+      </div>
+    </nav>
+  </div>
+</div>
+</div>
+ 
+</div>
+
+{% else %}
+<div class="row">
+    <div class="col-md-12">
+      <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+              <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href={{path('produit_index')}}>Mes produits </a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href='#'>Mes promotions</a>
+            </li>
+
+            
+          </ul>
+
+
+
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endif %}
+
+{% endblock %}
 
 {% block contenu %}
-    <h1>TypeProduit index</h1>
+<h1>TypeProduit index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for type_produit in type_produits %}
-            <tr>
-                <td>{{ type_produit.nom }}</td>
-                <td>
-                    <a href="{{ path('type_produit_show', {'id': type_produit.id}) }}">Consulter</a>
-                    <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
-                </td>
-            </tr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            {% if action == "assoiffeur" %}
+            <th>Actions</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for type_produit in typesProduit %}
+        <tr>
+            <td>
+            <a href = "{{path('type_produit_show', {id:type_produit.id})}}" style="color:blue; text-decoration:none;">
+                {{ type_produit.nom }}               
+            </a>
+            </td>
+            {% if action == "assoiffeur" %}                
+            <td> 
+                <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
+            </td>
+            {% endif %}
+        </tr>
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('type_produit_new') }}">Créer un nouveau type de produit</a>
+    </tbody>
+</table>
+{% if action == "assoiffeur" %}
+<a href="{{ path('type_produit_new') }}">Créer un nouveau type de produit</a>
+{% endif %}
 {% endblock %}

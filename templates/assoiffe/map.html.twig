@@ -92,7 +92,7 @@
             });
             
             var infoWindowOptions = {
-                content: '<a href="assoiffe/accueil" target="_blank">Choisir cet établissement</a>'
+                content: '<a href={{path('accueil_assoiffe')}} target="_blank">Choisir cet établissement</a>'
     };
 
             google.maps.event.addListener(objMarker, 'click', function() {

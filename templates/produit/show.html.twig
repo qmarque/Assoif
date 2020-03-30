@@ -1,5 +1,6 @@
 {% extends 'assoiffeur/baseassoiffeur.html.twig' %}
 
+
 {% block title %}Produit{% endblock %}
 
 {% block contenu %}
@@ -7,10 +8,6 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
             <tr>
                 <th>Nom</th>
                 <td>{{ produit.nom }}</td>
@@ -23,20 +20,23 @@
                 <th>Dosage</th>
                 <td>{{ produit.dosage }}</td>
             </tr>
+            {% if action == "assoiffeur" %}
             <tr>
                 <th>Stock</th>
                 <td>{{ produit.stock }}</td>
             </tr>
+            {% endif %}
             <tr>
                 <th>Photo</th>
                 <td>{{ produit.photo }}</td>
             </tr>
         </tbody>
     </table>
-
+{% if action == "assoiffe" %}
+    <a href="{{ path('assoiffe_accueil') }}">back to list</a>
+{% else %}
     <a href="{{ path('produit_index') }}">back to list</a>
-
     <a href="{{ path('produit_edit', {'id': produit.id}) }}">edit</a>
-
     {{ include('produit/_delete_form.html.twig') }}
+{% endif %}
 {% endblock %}
