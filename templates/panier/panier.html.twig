@@ -1,0 +1,45 @@
+{% extends 'assoiffe/baseassoiffe.html.twig' %}
+
+{% block titrePage %}
+Panier
+{% endblock %}
+{% block contenu %}
+    {% if items | length > 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Produit </th>
+                <th> Prix </th>
+                <th> Quantité </th>
+                <th> Total </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr></tr>
+            <td>{{item.produit.nom}}</td>
+            <td>{{item.produit.prix}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.produit.prix * item.quantity}}</td>
+            <td>
+                <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i>
+                </a>
+            </td>
+            {% endfor  %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class = "text-right"> Total : </td>
+                <td> {{total}} </td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    {% else %}
+    {% endif %}
+
+<a class="btn btn-success"  href="/assoiffe/panier/payer" role="button">Payer</a>
+
+{% endblock %}

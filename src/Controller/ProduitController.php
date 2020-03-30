@@ -43,6 +43,16 @@ class ProduitController extends AbstractController
 
 
     /**
+     * @Route("assoiffe/produit/", name="produit_index_assoiffe", methods={"GET"})
+     */
+    public function indexProduitsAssoiffe(ProduitRepository $produitRepository): Response
+    {
+        return $this->render('produit/index.html.twig', [
+            'produits' => $produitRepository->findAll(),
+            'action' => "assoiffe",
+        ]);
+    }
+    /**
      * @Route("assoiffe/produit/{typeproduit}", name="produit_par_typeProduit_index_assoiffe", methods={"GET"})
      */
     public function indexProduitsParTypeProduitAssoiffe(ProduitRepository $produitRepository, $typeproduit): Response
