@@ -60,22 +60,8 @@ class AppFixtures extends Fixture
         $Restaurant -> setLogo('cacahuete');
         $Restaurant -> setPeriodeFermeture($faker->date);
         $manager->persist($Restaurant);
-    
-        $Bar = new Assoiffeur();
-        $Bar -> setNom('Chez Mamailda');
-        $Bar -> setEmail('chezMamailda@pro.com');
-        $Bar -> setMdp('mamailda');
-        $Bar -> setAdresse($faker->address);
-        $Bar -> setVille('Pontacq');
-        $Bar -> setNomGerant('MamaIlda');
-        $Bar -> setSiegeSocial('EURL');
-        $Bar -> setSiret(3625217);       
-        $Bar -> setSiren(362571879);
-        $Bar -> setLogo('prune');
-        $Bar -> setPeriodeFermeture($faker->date);
-        $manager->persist($Bar);
 
-        $tabAssoiffeur= array ($Restaurant,$Bar);
+        $tabAssoiffeur= array ($Restaurant);
         
         if (($handle = fopen(dirname(__FILE__)."\boissons.csv", "r")) !== FALSE) {
             $row = fgets($handle);
@@ -102,7 +88,7 @@ class AppFixtures extends Fixture
                     $manager->persist($tabTypeProduit[$choixTypeProduit]);                    
                     $manager->persist($Unproduit[$i]);
                     // Sélectionner un type d'assoiffeur au hasard parmi les 2 enregistrées dans $tabAssoiffeur
-                    $choixAssoiffeur = $faker->numberBetween($min = 0,$max = 1);
+                    $choixAssoiffeur = $faker->numberBetween($min = 0,$max = 0);
                     // Création relation Produit --> assoiffeur
                     $Unproduit[$i] -> addAssoiffeur($tabAssoiffeur[$choixAssoiffeur]);
                     // Création relation assoiffeur --> Produit
