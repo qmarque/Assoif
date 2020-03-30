@@ -45,7 +45,7 @@
                   </li>
 
                   <li class="nav-item active">
-                    <a class="nav-link" href="/formation">Mes promotions</a>
+                    <a class="nav-link" href='#'>Mes promotions</a>
                   </li>
 
 
@@ -65,6 +65,29 @@
    
 
     {% block contenu %}
+     <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_produit in type_produits %}
+            <tr>
+                <td>{{ type_produit.nom }}</td>
+                <td>
+                    <a href="{{ path('type_produit_show', {'id': type_produit.id}) }}">Consulter</a>
+                    <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     {% endblock %}
 
 

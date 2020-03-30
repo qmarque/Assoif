@@ -2,7 +2,7 @@
 
 
 {% block contenu %}
-    <h1>TypeProduit index</h1>
+    <h1>Type de produits</h1>
 
     <table class="table">
         <thead>
@@ -14,9 +14,11 @@
         <tbody>
         {% for type_produit in type_produits %}
             <tr>
-                <td>{{ type_produit.nom }}</td>
+               <td><a href = "{{path('type_produit_show', {id:type_produit.id})}}" style="color:blue; text-decoration:none;">
+                {{ type_produit.nom }}
+              </a></td>
                 <td>
-                    <a href="{{ path('type_produit_show', {'id': type_produit.id}) }}">Consulter</a>
+                   
                     <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
                 </td>
             </tr>
