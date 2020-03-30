@@ -23,8 +23,8 @@ Panier
             <td>{{item.quantity}}</td>
             <td>{{item.produit.prix * item.quantity}}</td>
             <td>
-                <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" class="btn btn-danger btn-sm">
-                <i class="icon-trash-1"></i>
+                <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: black">
+                <i class="icon-trash"></i>
                 </a>
             </td>
             {% endfor  %}
