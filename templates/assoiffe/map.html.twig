@@ -88,10 +88,13 @@
                 map: objMaps,
                 icon: "http://www.google.com/mapfiles/ms/micons/purple-dot.png",
                 title: objPlace.name
+               
             });
             
-            
-            ;
+            var infoWindowOptions = {
+                content: '<a href="assoiffe/accueil" target="_blank">Choisir cet établissement</a>'
+    };
+
             google.maps.event.addListener(objMarker, 'click', function() {
                 var type;
                 if (objPlace.types[0] == "bar") {
@@ -103,7 +106,7 @@
                 } else {
                     type = "Inconnu";   
                 }
-                var strHTML = "<b>" + objPlace.name + "</b><br />" +type + "<br>";
+                var strHTML = "<b>" + objPlace.name + "</b><br />" +type + "<br>" + infoWindowOptions.content;
                 
                 objInfoWindow.setContent(strHTML);
                 objInfoWindow.open(objMaps, this);
@@ -116,7 +119,6 @@
         <div> <h2>Veuillez choisir un établissement</h2></div>
         
         <div id="maps"></div>
-       
     </center>
 </body>
 </html>
