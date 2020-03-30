@@ -1,4 +1,4 @@
-{% extends 'assoiffe/baseassoiffe.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block titrePage %}
 Panier
@@ -24,7 +24,7 @@ Panier
             <td>{{item.produit.prix * item.quantity}}</td>
             <td>
                 <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" class="btn btn-danger btn-sm">
-                <i class="fas fa-trash"></i>
+                <i class="icon-trash-1"></i>
                 </a>
             </td>
             {% endfor  %}

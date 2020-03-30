@@ -20,22 +20,22 @@ class PanierController extends AbstractController
         foreach($panier as $id => $quantity){
             $panierWithData[]=
             [
-                'product' => $produitRepository->find($id), //trouver un produit grace à son id
+                'produit' => $produitRepository->find($id), //trouver un produit grace à son id
                 'quantity' => $quantity
             ];
-            dump($panierWithData);
+            //dump($panierWithData);
+            //dd($panierWithData);
         }
         
        // dd($panierWithData);
 
         $total=0;
         foreach($panierWithData as $item){
-            dump($item); exit;
-            //$totalItem=$item['product']->getPrix() * $item['quantity'];
-            //$total+=$totalItem;
+            $totalItem=$item['produit']->getPrix() * $item['quantity'];
+            $total+=$totalItem;
         }
 
-        return $this->render('panier/index.html.twig', [
+        return $this->render('panier/panier.html.twig', [
             'items' => $panierWithData,
             'total' => $total
         ]);
