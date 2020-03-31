@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Ma notification</title>
+</head>
+<body>
+  <center>
+ <button id="auto"> Autorisation </button>
+ <button id="verif"> Vérification </button>
+ <button id="notif"> Afficher Notification </button>
+ <button id="fermer"> Fermer Notification </button>
+  </center>
+  <script>
+      var autentification = document.querySelector("#auto");
+      var verif = document.querySelector("#verif");
+      var notif = document.querySelector("#notif");
+      var fermer = document.querySelector("#fermer");
+      var notification;
+
+      autentification.addEventListener("click",function(){ //demande la permission d'envoyer des notifs
+        Notification.requestPermission();
+      })
+      verif.addEventListener("click",function(){ //affiche dans quelle etat se trouve la permission granted/default
+          console.log(Notification.permission);
+      })
+      notif.addEventListener("click",function(){
+          notification = new Notification("Votre commande est prête!", { //affiche la notification
+            body : "Text qui permet de tester"
+          });
+          notification.onclick = function() {
+            console.log("Tu as cliquer sur la notification");//affiche l'ouverture de notification
+          }
+          notification.onshow = function() {
+            console.log("Tu as afficher une notification");//affiche la fermeture de notification
+          }
+          //notification.onclick = function() {} on peut remplacer ca par la ligne du dessous
+          notification.addEventListener("close",function(){
+        console.log("Tu as fermer la notification");
+      })
+
+      fermer.addEventListener("click",function(){
+        notification.close();
+      })
+      })
+
+     
+  </script>
+  
+</body>
+</html>
