@@ -11,7 +11,7 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item active">
-        <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{path('accueil_assoiffe')}}">Accueil <span class="sr-only">(current)</span></a>
       </li>
       
       
@@ -19,7 +19,7 @@
     
     <ul class="navbar-nav ml-md-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/panier">
+        <a class="nav-link" href="{{ path('panier_index_assoiffe') }}">
           <i class="icon-shopping-basket"></i>
           Mon panier
           <span class="sr-only">(current)</span>
@@ -43,11 +43,16 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item active">
-        <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
+        <a class="nav-link" href="{{path('accueil_assoiffeur')}}"> Accueil </a>
       </li>
       
       <li class="nav-item active">
-        <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
+        <a class="nav-link" href="{{path('produit_index_assoiffeur')}}" >Mes produits </a>
+      </li>
+
+      
+      <li class="nav-item active">
+        <p id = "notif"class="nav-link" >Mes commandes </p>
       </li>
       
     </ul>
@@ -69,13 +74,9 @@
 <table class="table">
   <thead>
     <tr>
-<<<<<<< HEAD
-      <th>Nom</th>
-=======
       {% if action == "assoiffeur" %}
       <th>Nom</th>
       {% endif %}
->>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
       {% if action == "assoiffeur" %}
       <th>Modifier</th>
       {% endif %}
@@ -86,17 +87,11 @@
     <tr>
       <td>
         {% if action == "assoiffe" %}
-<<<<<<< HEAD
-        <a href = "{{path('produit_par_typeProduit_index_assoiffe',{typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
-          {{ type_produit.nom }}               
-        </a>
-=======
         <center>
         <a href = "{{path('produit_par_typeProduit_index_assoiffe',{typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
           {{ type_produit.nom }}               
         </a>
       </center>
->>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
         {% else %}
         <a href = "{{path('produit_par_typeProduit_index_assoiffeur', {typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
           {{ type_produit.nom }}               
@@ -118,10 +113,10 @@
     {% endfor %}
   </tbody>
 </table>
-<<<<<<< HEAD
 {% if action == "assoiffeur" %}
+<center>
 <a class="btn btn-secondary"   href="{{ path('type_produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau type de produit</a>
-
+</center>
 <html>
 <body>
   <script>
@@ -129,21 +124,13 @@
     notif.addEventListener("click",function(){
     notification = new Notification("Une commande doit être faite!", {});
     notification.onclick = function(notification) {
-  event.preventDefault(); // Previene al buscador de mover el foco a la pestaña del Notification
-  window.open('http://127.0.0.1:8000/assoiffeur/panier', '_blank');
+  window.open('http://127.0.0.1:8000/assoiffeur/panier', '_self');
 }
     })
-    
     
   </script>
 </body>
 </html>
 
-=======
-<center>
-  {% if action == "assoiffeur" %}
-  <a class="btn btn-secondary"   href="{{ path('type_produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau type de produit</a>
-</center>
->>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
 {% endif %}
 {% endblock %}

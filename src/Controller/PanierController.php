@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProduitRepository;
+use App\Entity\Assoiffe;
+use App\Entity\Assoiffeur;
+use App\Entity\Produit;
 class PanierController extends AbstractController
 {
     /**
