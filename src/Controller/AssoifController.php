@@ -89,5 +89,13 @@ class AssoifController extends AbstractController
         {
             return $this->render('assoiffe/commandeValidee.html.twig', ['controller_name' => 'AssoifController',]);
         }
+
+          /**
+        * @Route("/notification", name="assoiffe_notification_commandeValidee")
+        */
+        public function notif()
+        {
+            return $this->render('notification/notification.html.twig', ['controller_name' => 'AssoifController', ]);
+        }
         
     }
