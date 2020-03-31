@@ -1,3 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block titrePage %}
+Carte des Assoiffeurs{% endblock %}
+{% block entete %}
+       <center> <h2>Veuillez choisir un établissement</h2></center>
+{% endblock %}
+{% block contenu %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +99,7 @@
             });
             
             var infoWindowOptions = {
-                content: '<a href={{path('accueil_assoiffe')}} target="_blank">Choisir cet établissement</a>'
+                content: '<a href={{path('accueil_assoiffe')}} target="_self">Choisir cet établissement</a>'
     };
 
             google.maps.event.addListener(objMarker, 'click', function() {
@@ -116,9 +123,9 @@
 </head>
 <body>
     <center>
-        <div> <h2>Veuillez choisir un établissement</h2></div>
         
         <div id="maps"></div>
     </center>
 </body>
 </html>
+{% endblock %}

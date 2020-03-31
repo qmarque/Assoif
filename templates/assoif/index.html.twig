@@ -5,37 +5,40 @@
 {% block contenu %}
 
 <div class="example-wrapper">
-   <center> 
-    <h2>Qui êtes-vous ?</h2>
-      <br>
-   <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-3">
-		</div>
-		<div class="col-md-3">
-			 
-			<button type="button" class="btn btn-primary">
-				<a href="{{path('map')}}"  style="color:white">Assoiffé (client)</a>
-			</button>
-		</div>
-		<div class="col-md-3">
-			 
-			<button type="button" class="btn btn-primary">
-				<a href="{{path('accueil_assoiffeur')}}"  style="color:white">Assoiffeur (établissement)</a>
-			</button>
-		</div>
-		<div class="col-md-3">
-		</div>
-    </div>
-  <br><br>
-	<div class="row">
-		<div class="col-md-12">
-			<button type="button" class="btn btn-secondary">
-				S'inscrire
-			</button>
-		</div>
-    </div>
-</center>
-</div>
+	<center> 
+		<h2>Qui êtes-vous ?</h2>
+		<br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 ">
+					<button type="button" class="btn btn-secondary">
+						<a href="{{path('map')}}"  style="color:white">Assoiffé (client)</a>
+					</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12 ">
+					<a href="{{path('map')}}"  style="color:black">ou</a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<button type="button" class="btn btn-secondary">
+						<a href="{{path('accueil_assoiffeur')}}"  style="color:white">Assoiffeur (établissement)</a>
+					</button>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-12">
+					<button type="button" class="btn btn-info">
+						S'inscrire
+					</button>
+				</div>
+			</div>
+		</center>
+	</div>
 </div>
 {% endblock %}

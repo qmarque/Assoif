@@ -2,86 +2,77 @@
 
 {% block menu %}
 {% if action == "assoiffe" %}
-<div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item active">
-          <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
-        </li>
-        
-        
-      </ul>
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
       
-      <ul class="navbar-nav ml-md-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/panier">
-            <i class="icon-shopping-basket"></i>
-            Mon panier
-            <span class="sr-only">(current)</span></a>
-          </li>
-          
-          
-        </ul>
-        
-      </div>
-    </nav>
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      
+      
+    </ul>
+    
+    <ul class="navbar-nav ml-md-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/panier">
+          <i class="icon-shopping-basket"></i>
+          Mon panier
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+    
   </div>
-</div>
-</div>
+</nav>
 
-</div>
 
 {% else %}
-<div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item active">
-          <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
-        </li>
-        
-        <li class="nav-item active">
-          <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
-        </li>
-        
-        
-        
-      </ul>
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  
+  <div class="collapse navbar-collapse " id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
+      </li>
       
       
       
-    </div>
-  </nav>
-</div>
-</div>
-</div>
+    </ul>
+    
+    
+    
+  </div>
+</nav>
 
-</div>
+
 {% endif %}
 
 {% endblock %}
 
-{% block title %}Produit index{% endblock %}
 
 {% block contenu %}
-{% if action == "assoiffeur" %}
-<h1>Liste des produits</h1>
-{% else %}
-<h1>Choisir un produit</h1>
-{% endif %}
+<center>
+  {% if action == "assoiffeur" %}
+  <h1>Liste des produits</h1>
+  {% else %}
+  <h1>Choisir un produit</h1>
+  {% endif %}
+</center>
 <table class="table">
   <thead>
     <tr>
@@ -95,7 +86,7 @@
       {% if action == "assoiffeur" %}
       <th>Modifier</th>
       {% else %}
-      <th>Ajouter au panier</th>
+      <th></th>
       {% endif %}
     </tr>
   </thead>
@@ -112,9 +103,9 @@
       <td><img src={{ produit.photo }} style="width:80px; height:120px; "></td>
       <td>
         {% if action == "assoiffe" %}
-        <a href="{{ path('panier_add' , {'id' : produit.id}) }}" style="color: green" >
-          <i class="icon-plus-circled"></i>
-        </a>
+     
+        <a class="btn btn-success"  href="{{ path('panier_add' , {'id' : produit.id}) }}" role="button"><i class="icon-plus-circled" ></i>Ajouter</a>
+
         {% endif %}
         {% if action == "assoiffeur" %}
         <a href="{{ path('produit_edit', {'id': produit.id}) }}" style="color: grey">
@@ -130,9 +121,11 @@
     {% endfor %}
   </tbody>
 </table>
-{% if action == "assoiffeur" %}
-<a class="btn btn-secondary"   href="{{ path('produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau produit</a>
-
-{% endif %}
+<center>
+  {% if action == "assoiffeur" %}
+  <a class="btn btn-secondary"   href="{{ path('produit_new') }}" role="button"><i class="icon-plus-circled" ></i>Créer un nouveau produit</a>
+  
+  {% endif %}
+</center>
 
 {% endblock %}

@@ -2,119 +2,80 @@
 
 {% block menu %}
 {% if action == "assoiffe" %}
-<div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="{{path('accueil_assoiffe')}}">Accueil <span class="sr-only">(current)</span></a>
-        </li>
-        
-        <li class="nav-item active">
-          <p  id="notif" class="nav-link" role="button">Ma Commande </p>
-        </li>
-        
-      </ul>
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
       
-      <ul class="navbar-nav ml-md-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ path('panier_index_assoiffe') }}">
-            <i class="icon-shopping-basket"></i>
-            Mon panier
-            <span class="sr-only">(current)</span></a>
-          </li>
-          
-          
-        </ul>
-        
-      </div>
-    </nav>
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+      </li>
+      
+      
+    </ul>
+    
+    <ul class="navbar-nav ml-md-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/panier">
+          <i class="icon-shopping-basket"></i>
+          Mon panier
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+    
   </div>
-</div>
-</div>
+</nav>
 
-</div>
-
-<html>
-<body>
-  <script>
-    var notif = document.querySelector("#notif");
-    notif.addEventListener("click",function(){
-    notification = new Notification("Votre commande est prête!", {});
-    notification.onclick = function(notification) {
-  event.preventDefault(); // Previene al buscador de mover el foco a la pestaña del Notification
-  window.open('http://127.0.0.1:8000/assoiffe/panier/payer/valider', '_blank');
-}
-    })
-    
-    
-  </script>
-</body>
-</html>
 
 {% else %}
-<div class="row">
-  <div class="col-md-12">
-    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="{{path('accueil_assoiffeur')}}"> Accueil </a>
-        </li>
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="{{path('produit_index_assoiffeur')}}">Mes produits </a>
-        </li>
-        
-        <li class="nav-item active">
-          <p  id="notif" class="nav-link" role="button">Mes Commandes </p>
-        </li>
-        
-        
-        
-      </ul>
-      
-      
-      
-    </div>
-  </nav>
-</div>
-</div>
-</div>
-
-</div>
-<body>
-  <script>
-    
-  </script>
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   
-</body>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('accueil_assoiffeur')}}> Accueil </a>
+      </li>
+      
+      <li class="nav-item active">
+        <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
 {% endif %}
 
 {% endblock %}
 
 {% block contenu %}
-{% if action == "assoiffeur" %}
-<h1>Liste des types de produits</h1>
-{% else %}
-<h1>Choisir un type de produits</h1>
-{% endif %}
-
+<center>
+  {% if action == "assoiffeur" %}
+  <h1>Liste des types de produits</h1>
+  {% else %}
+  <h1>Choisir un type de produits</h1>
+  {% endif %}
+</center>
 <table class="table">
   <thead>
     <tr>
+<<<<<<< HEAD
       <th>Nom</th>
+=======
+      {% if action == "assoiffeur" %}
+      <th>Nom</th>
+      {% endif %}
+>>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
       {% if action == "assoiffeur" %}
       <th>Modifier</th>
       {% endif %}
@@ -125,9 +86,17 @@
     <tr>
       <td>
         {% if action == "assoiffe" %}
+<<<<<<< HEAD
         <a href = "{{path('produit_par_typeProduit_index_assoiffe',{typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
           {{ type_produit.nom }}               
         </a>
+=======
+        <center>
+        <a href = "{{path('produit_par_typeProduit_index_assoiffe',{typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
+          {{ type_produit.nom }}               
+        </a>
+      </center>
+>>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
         {% else %}
         <a href = "{{path('produit_par_typeProduit_index_assoiffeur', {typeproduit:type_produit.id})}}" style="color:blue; text-decoration:none;">
           {{ type_produit.nom }}               
@@ -149,6 +118,7 @@
     {% endfor %}
   </tbody>
 </table>
+<<<<<<< HEAD
 {% if action == "assoiffeur" %}
 <a class="btn btn-secondary"   href="{{ path('type_produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau type de produit</a>
 
@@ -169,5 +139,11 @@
 </body>
 </html>
 
+=======
+<center>
+  {% if action == "assoiffeur" %}
+  <a class="btn btn-secondary"   href="{{ path('type_produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau type de produit</a>
+</center>
+>>>>>>> bc29aa65cc3e871ae2e649525f4bae8fee47d0b1
 {% endif %}
 {% endblock %}
