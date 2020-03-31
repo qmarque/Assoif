@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/**
+* @Route("/typeproduit")
+*/
 class TypeProduitController extends AbstractController
 {
     /**
@@ -27,7 +29,7 @@ class TypeProduitController extends AbstractController
             $entityManager->persist($typeProduit);
             $entityManager->flush();
 
-            return $this->redirectToRoute('type_produit_index');
+            return $this->redirectToRoute('accueil_assoiffeur');
         }
 
         return $this->render('type_produit/new.html.twig', [
@@ -71,7 +73,7 @@ class TypeProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('type_produit_index');
+            return $this->redirectToRoute('accueil_assoiffeur');
         }
 
         return $this->render('type_produit/edit.html.twig', [
@@ -91,6 +93,6 @@ class TypeProduitController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('type_produit_index');
+        return $this->redirectToRoute('accueil_assoiffeur');
     }
 }

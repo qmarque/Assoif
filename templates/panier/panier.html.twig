@@ -21,7 +21,7 @@ Panier
             <td>{{item.produit.nom}}</td>
             <td>{{item.produit.prix}}</td>
             <td>{{item.quantity}}</td>
-            <td>{{item.produit.prix * item.quantity}}</td>
+            <td>{{item.produit.prix * item.quantity}}€</td>
             <td>
                 <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: black">
                 <i class="icon-trash"></i>
@@ -32,7 +32,7 @@ Panier
         <tfoot>
             <tr>
                 <td colspan="3" class = "text-right"> Total : </td>
-                <td> {{total}} </td>
+                <td> {{total}} €</td>
                 <td></td>
             </tr>
         </tfoot>
@@ -40,6 +40,5 @@ Panier
     {% else %}
     {% endif %}
 
-<a class="btn btn-success"  href="/assoiffe/panier/payer" role="button">Payer</a>
-
+<a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
 {% endblock %}

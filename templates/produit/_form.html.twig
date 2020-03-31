@@ -1,4 +1,23 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form) }}<br>
+<strong> <label>&nbsp;Nom</label><br></strong>
+{{form_widget(form.nom)}}<br>
+
+<strong> <label>&nbsp;Prix</label><br></strong>
+{{form_widget(form.prix)}}<br>
+
+<strong> <label>&nbsp;Dosage</label><br></strong>
+{{form_widget(form.dosage)}}<br>
+
+<strong> <label>&nbsp;Stock</label><br></strong>
+{{form_widget(form.stock)}}<br>
+
+<strong> <label>&nbsp;Photo</label><br></strong>
+{{form_widget(form.photo)}}<br>
+
+<strong> <label>&nbsp;Type de produit</label><br></strong>
+{{form_widget(form.typeproduit)}}<br>
+
+<br>
+
+<button class="btn btn-secondary">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

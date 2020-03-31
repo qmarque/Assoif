@@ -16,12 +16,7 @@
           <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
         </li>
         
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Mes commandes </a>
-        </li>  
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('panier_index') }}">Panier</a>
-        </li>   
+        
       </ul>
       
       <ul class="navbar-nav ml-md-auto">
@@ -62,9 +57,7 @@
               <a class="nav-link" href={{path('produit_index_assoiffeur')}}>Mes produits </a>
             </li>
 
-            <li class="nav-item active">
-              <a class="nav-link" href='#'>Mes promotions</a>
-            </li>
+           
 
             
           </ul>
@@ -83,14 +76,18 @@
 {% endblock %}
 
 {% block contenu %}
-<h1>TypeProduit index</h1>
+{% if action == "assoiffeur" %}
+<h1>Liste des types de produits</h1>
+{% else %}
+<h1>Choisir un type de produits</h1>
+{% endif %}
 
 <table class="table">
     <thead>
         <tr>
             <th>Nom</th>
             {% if action == "assoiffeur" %}
-            <th>Actions</th>
+            <th>Modifier</th>
             {% endif %}
         </tr>
     </thead>
@@ -110,7 +107,9 @@
             </td>
             {% if action == "assoiffeur" %}                
             <td> 
-                <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}">Editer</a>
+              <a href="{{ path('type_produit_edit', {'id': type_produit.id}) }}" style="color: grey">
+                <i class="icon-pencil"></i>
+              </a>
             </td>
             {% endif %}
         </tr>
@@ -122,6 +121,7 @@
     </tbody>
 </table>
 {% if action == "assoiffeur" %}
-<a href="{{ path('type_produit_new') }}">Créer un nouveau type de produit</a>
+<a class="btn btn-secondary"   href="{{ path('type_produit_new') }}" role="button"><i class="icon-plus-circled"></i>Créer un nouveau type de produit</a>
+
 {% endif %}
 {% endblock %}

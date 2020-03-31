@@ -1,4 +1,4 @@
-{% extends 'assoiffeur/baseassoiffeur.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block titrePage %}Nouveau type de produit{% endblock %}
 
@@ -7,5 +7,5 @@
 
     {{ include('type_produit/_form.html.twig') }}
 
-    <a href="{{ path('type_produit_index') }}">Revenir à la liste des types de produits</a>
+    <a href="{{ path('accueil_assoiffeur') }}">Revenir à la liste des types de produits</a>
 {% endblock %}

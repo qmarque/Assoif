@@ -1,13 +1,14 @@
-{% extends 'assoiffeur/baseassoiffeur.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Editer un type de produit{% endblock %}
+{% block titrePage %}Editer un type de produit{% endblock %}
 
 {% block contenu %}
-    <h1>Editer un type de produit</h1>
 
-    {{ include('type_produit/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('type_produit_index') }}">Revenir à la liste des produits</a>
+    {{ include('type_produit/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+<br>
 
     {{ include('type_produit/_delete_form.html.twig') }}
+<br>
+        <a href="{{ path('accueil_assoiffeur') }}">Revenir à la liste des produits</a>
+
 {% endblock %}

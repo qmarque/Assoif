@@ -82,7 +82,7 @@ class ProduitController extends AbstractController
             $entityManager->persist($produit);
             $entityManager->flush();
 
-            return $this->redirectToRoute('produit_index');
+            return $this->redirectToRoute('produit_index_assoiffeur');
         }
 
         return $this->render('produit/new.html.twig', [
@@ -113,7 +113,7 @@ class ProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('produit_index');
+            return $this->redirectToRoute('produit_index_assoiffeur');
         }
 
         return $this->render('produit/edit.html.twig', [
@@ -133,6 +133,6 @@ class ProduitController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('produit_index');
+        return $this->redirectToRoute('produit_index_assoiffeur');
     }
 }
