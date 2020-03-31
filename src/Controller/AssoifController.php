@@ -36,16 +36,7 @@ class AssoifController extends AbstractController
         #    return $this->render('assoiffeur/baseassoiffeur.html.twig', ['controller_name' => 'AssoifController', ]);
         #  }
 
-        
-        /**
-        * @Route("/assoiffe/panier", name="panier")
-        */
-        public function panier()
-        {
-            return $this->render('assoiffe/panier.html.twig', ['controller_name' => 'AssoifController',]);
-        }
-        
-        
+            
         /**
         * @Route("/assoiffe/panier/payer", name="payment")
         */
@@ -82,20 +73,13 @@ class AssoifController extends AbstractController
             return $this->render('assoiffe/validerCarteBleue.html.twig',['vueFormulaire' => $vueFormulaire, 'action'=>"ajouter"]);
         }
 
-         /**
+        /**
         * @Route("/assoiffe/panier/payer/valider", name="commandeValidee")
         */
         public function valider()
         {
             return $this->render('assoiffe/commandeValidee.html.twig', ['controller_name' => 'AssoifController',]);
-        }
-
-          /**
-        * @Route("/notification", name="assoiffe_notification_commandeValidee")
-        */
-        public function notif()
-        {
-            return $this->render('notification/notification.html.twig', ['controller_name' => 'AssoifController', ]);
+            
         }
         
     }

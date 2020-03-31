@@ -9,9 +9,9 @@ use App\Repository\ProduitRepository;
 class PanierController extends AbstractController
 {
     /**
-     * @Route("/panier", name="panier_index")
+     * @Route("assoiffe/panier", name="panier_index_assoiffe")
      */
-    public function index(SessionInterface $session , ProduitRepository $produitRepository)
+    public function indexAssoiffe(SessionInterface $session , ProduitRepository $produitRepository)
     {
         $panier = $session->get('panier', []); // récupération du panier
         
@@ -37,7 +37,41 @@ class PanierController extends AbstractController
 
         return $this->render('panier/panier.html.twig', [
             'items' => $panierWithData,
-            'total' => $total
+            'total' => $total,
+            'action' => "assoiffe"
+        ]);
+    }
+    /**
+     * @Route("assoiffeur/panier", name="panier_index_assoiffeur")
+     */
+    public function indexAssoiffeur(SessionInterface $session , ProduitRepository $produitRepository)
+    {
+        $panier = $session->get('panier', []); // récupération du panier
+        
+        $panierWithData = [];
+        
+        foreach($panier as $id => $quantity){
+            $panierWithData[]=
+            [
+                'produit' => $produitRepository->find($id), //trouver un produit grace à son id
+                'quantity' => $quantity
+            ];
+            //dump($panierWithData);
+            //dd($panierWithData);
+        }
+        
+       // dd($panierWithData);
+
+        $total=0;
+        foreach($panierWithData as $item){
+            $totalItem=$item['produit']->getPrix() * $item['quantity'];
+            $total+=$totalItem;
+        }
+
+        return $this->render('panier/panier.html.twig', [
+            'items' => $panierWithData,
+            'total' => $total,
+            'action' => "assoiffeur"
         ]);
     }
     /**
@@ -56,7 +90,7 @@ class PanierController extends AbstractController
 
         $session->set('panier', $panier); //fait une mise à jour du panier
 
-        return $this->redirectToRoute("panier_index");
+        return $this->redirectToRoute("panier_index_assoiffe");
 
         //dd($session->get('panier')); //permet de savoir se qu'il y a actuellement dans le panier
     }
@@ -71,6 +105,6 @@ class PanierController extends AbstractController
             unset($panier[$id]);
         }
         $session->set('panier', $panier);
-        return $this->redirectToRoute("panier_index");
+        return $this->redirectToRoute("panier_index_assoiffe");
     }
 }

@@ -4,41 +4,48 @@
 Panier
 {% endblock %}
 {% block contenu %}
-    {% if items | length > 0 %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th> Produit </th>
-                <th> Prix </th>
-                <th> Quantité </th>
-                <th> Total </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr></tr>
-            <td>{{item.produit.nom}}</td>
-            <td>{{item.produit.prix}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.produit.prix * item.quantity}}€</td>
-            <td>
-                <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: black">
+{% if items | length > 0 %}
+<table class="table">
+    <thead>
+        <tr>
+            <th> Produit </th>
+            <th> Prix </th>
+            <th> Quantité </th>
+            <th> Total </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr></tr>
+        <td>{{item.produit.nom}}</td>
+        <td>{{item.produit.prix}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.produit.prix * item.quantity}}€</td>
+        {% if action == "assoiffe" %}
+        <td>
+            <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: black">
                 <i class="icon-trash"></i>
-                </a>
-            </td>
-            {% endfor  %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3" class = "text-right"> Total : </td>
-                <td> {{total}} €</td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-    {% else %}
-    {% endif %}
-
+            </a>
+        </td>
+        {% endif %}
+        {% endfor  %}
+        
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class = "text-right"> Total : </td>
+            <td> {{total}} €</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+{% else %}
+{% endif %}
+{% if action == "assoiffe" %}
 <a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
+{% else %}
+<a class="btn btn-success btn-lg btn-block"  href="{{path('accueil_assoiffeur')}}" role="button">Commande Finaliser</a>
+{% endif %}
+
 {% endblock %}
