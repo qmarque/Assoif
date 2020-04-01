@@ -3,6 +3,40 @@
 {% block titrePage %}
 Panier
 {% endblock %}
+
+{% block menu %}
+{% if action == "assoiffe" %}
+<nav class="navbar navbar-expand navbar-dark bg-dark" >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item active">
+          <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
+        </li>
+        
+        
+      </ul>
+      
+      <ul class="navbar-nav ml-md-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/assoiffe/panier">
+            <i class="icon-shopping-basket"></i>
+            Mon panier
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        
+        
+      </ul>
+      
+    </div>
+  </nav>
+  
+{% endif %}
+{% endblock %}
 {% block contenu %}
     {% if items | length > 0 %}
     <table class="table">
@@ -46,7 +80,8 @@ Panier
 {% if action == "assoiffe" %}
 <a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
 {% else %}
-<center><br>
+<center>
+    <strong>Commande n° 4096</strong><br><br>
 <a class="btn btn-success "  href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
 </center>
 {% endif %}
