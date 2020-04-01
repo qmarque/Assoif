@@ -5,139 +5,124 @@ Panier
 {% endblock %}
 
 {% block menu %}
-{% if action == "assoiffe" %}
-<nav class="navbar navbar-expand navbar-dark bg-dark" >
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
+        {% if action == "assoiffe" %}
+            <nav class="navbar navbar-expand navbar-dark bg-dark" >
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
             
-            <li class="nav-item active">
-                <a class="nav-link" href={{path('accueil_assoiffe')}}>Accueil <span class="sr-only">(current)</span></a>
-            </li>
-            
-            
-        </ul>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{path('accueil_assoiffe')}}">Accueil <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
         
-        <ul class="navbar-nav ml-md-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/assoiffe/panier">
-                    <i class="icon-shopping-basket"></i>
-                    Mon panier
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            
-            
-        </ul>
+                    <ul class="navbar-nav ml-md-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/assoiffe/panier">
+                                <i class="icon-shopping-basket"></i>
+                                Mon panier
+                            <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
         
-    </div>
-</nav>
+                </div>
+            </nav>
 
-{% endif %}
+        {% endif %}
 {% endblock %}
 {% block contenu %}
-{% if items | length > 0 %}
-<table class="table">
-    <thead>
-        <tr>
-            <th> Produit </th>
-            <th> Prix </th>
-            <th> Quantité </th>
-            <th> Total </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in items %}
-        <tr></tr>
-        <td>{{item.produit.nom}}</td>
-        <td>{{item.produit.prix}}</td>
-        <td>{{item.quantity}}</td>
-        <td>{{item.produit.prix * item.quantity}}€</td>
-        <td>
-            {% if action == "assoiffe" %}
-            <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: red">
-                <i class="icon-trash"></i>
-            </a>
-            {% endif %}
+    {% if items | length > 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th> Produit </th>
+                    <th> Prix </th>
+                    <th> Quantité </th>
+                    <th> Total </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr></tr>
+                        <td>{{item.produit.nom}}</td>
+                        <td>{{item.produit.prix}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.produit.prix * item.quantity}}€</td>
+                    <td>
+                        {% if action == "assoiffe" %}
+                            <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: red">
+                                <i class="icon-trash"></i>
+                            </a>
+                        {% endif %}
             
-        </td>
-        {% endfor  %}
-        
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class = "text-right"> Total : </td>
-            <td> {{total}} €</td>
-            <td></td>
-        </tr>
-    </tfoot>
-</table>
+                    </td>
+                {% endfor  %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class = "text-right"> Total : </td>
+                    <td> {{total}} €</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
 
-{% if action == "assoiffe" %}
-{% if compteur > 0 %}
-<a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
-{% endif %}
-{% endif %}
-{% else %}
-{% if action == "assoiffe" %}
-<center><br>
-    <h4>Votre panier est actuellement vide ...</h4><br>
-    <a class="nav-link" href="{{path('accueil_assoiffe')}}">Ajouter des produits au panier</a>
+        {% if action == "assoiffe" %}
+
+            <a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
+
+        {% endif %}
+
+        {% if action == "assoiffeur" %}
+        <center>
+            <strong>Commande n° 4096</strong><br><br>
+            <a class="btn btn-success " id="notifPrete" href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
+        </center>
+        {% set compteur =  compteur + 1 %}
+        {% endif %}
     
-</center>
-{% endif %}
-{% endif %}
+        <script>
+            var notif = document.querySelector("#notifPrete");
+            notif.addEventListener("click",function(){
+            var not = document.querySelector("#notifPreteRecue");
+            })
+        </script>
 
 
-{% if action == "assoiffeur" %}
-<center>
-    <strong>Commande n° 4096</strong><br><br>
-    <a class="btn btn-success " id="notifPrete" href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
-</center>
+        {% if action == "assoiffe" %}
+            {% if compteur > 0 %}
+                <br><center>
+                <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
+                </center>
 
-
-{% endif %}
-{% set compteur =  compteur + 1 %}
-
-
-<script>
-    var notif = document.querySelector("#notifPrete");
-    notif.addEventListener("click",function(){
-        
-        var not = document.querySelector("#notifPreteRecue");
-    })
-    
-</script>
-
-
-{% if action == "assoiffe" %}
-{% if compteur > 0 %}
-<br><center>
-    <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
-</center>
-
-<script>
-    var not = document.querySelector("#notifPreteRecue");
-    not.addEventListener("click",function(){
-        notification = new Notification("Votre commande est prête !", {});
-    })
-</script>
-{% else %}
-<br><center>
-    <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
-</center>
-
-<script>
-    var not = document.querySelector("#notifPreteRecue");
-    not.addEventListener("click",function(){
-        notification = new Notification("Votre commande n'est pas encore prête ", {});
-    })
-</script>
-{% endif %}
-{% endif %}
+                <script>
+                    var not = document.querySelector("#notifPreteRecue");
+                    not.addEventListener("click",function(){
+                    notification = new Notification("Votre commande est prête !", {});
+                    })
+                </script>
+                {% else %}
+                    <br><center>
+                    <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
+                    </center>
+                <script>
+                    var not = document.querySelector("#notifPreteRecue");
+                    not.addEventListener("click",function(){
+                    notification = new Notification("Votre commande n'est pas encore prête ", {});
+                    })
+                </script>
+            {% endif %}  
+        {% endif %}
+    {% else %}
+        <center><br>
+        <h4>Votre panier est actuellement vide ...</h4><br>
+        <a class="nav-link" href="{{path('accueil_assoiffe')}}">Ajouter des produits au panier</a>
+        </center>
+    {% endif %}
 
 
 {% endblock %}
