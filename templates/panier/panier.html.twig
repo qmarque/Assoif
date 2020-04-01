@@ -77,54 +77,58 @@ Panier
 </table>
 
 {% if action == "assoiffe" %}
+{% if compteur > 0 %}
 <a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
 {% endif %}
+{% endif %}
 {% else %}
+{% if action == "assoiffe" %}
 <center><br>
-    <h4>Votre panier est actuellement vide ...</h3><br>
-        <a class="nav-link" href="{{path('accueil_assoiffe')}}">Ajouter des produits au panier</a>
-        
-    </center>
+    <h4>Votre panier est actuellement vide ...</h4><br>
+    <a class="nav-link" href="{{path('accueil_assoiffe')}}">Ajouter des produits au panier</a>
     
-    {% endif %}
-    
-    
-    {% if action == "assoiffeur" %}
-    <center>
-        <strong>Commande n° 4096</strong><br><br>
-        <a class="btn btn-success " id="notifPrete" href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
-    </center>
-    {% endif %}
-    
-    
-    
-    <script>
-        var notif = document.querySelector("#notifPrete");
-        notif.addEventListener("click",function(){
-            
-            var not = document.querySelector("#notifPreteRecue");
-        })
-        
-    </script>
-  
-    
-    {% if action == "assoiffe" %}
+</center>
+{% endif %}
+{% endif %}
 
-    <br><center>
-    <a class="btn btn-secondary " id="notifPreteRecue" href="{{path('accueil_assoiffe')}}" role="button">Commande reçue ?</a>
-    </center>
-    
-    
-    <script>
+
+{% if action == "assoiffeur" %}
+<center>
+    <strong>Commande n° 4096</strong><br><br>
+    <a class="btn btn-success " id="notifPrete" href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
+</center>
+
+
+{% endif %}
+{% set compteur =  compteur + 1 %}
+
+
+<script>
+    var notif = document.querySelector("#notifPrete");
+    notif.addEventListener("click",function(){
+        
         var not = document.querySelector("#notifPreteRecue");
-        not.addEventListener("click",function(){
-            notification = new Notification("Votre commande est prête, venez la chercher au comptoir", {});
-        })
-    </script>
+    })
     
+</script>
 
 
-    {% endif %}
-    
-    
-    {% endblock %}
+{% if action == "assoiffe" %}
+{% if compteur > 0 %}
+<br><center>
+    <a class="btn btn-secondary " id="notifPreteRecue" href="{{path('panier_index_assoiffe')}}" role="button">Commande reçue ?</a>
+</center>
+
+<script>
+    var not = document.querySelector("#notifPreteRecue");
+    not.addEventListener("click",function(){
+        notification = new Notification("Votre commande est prête, venez la chercher au comptoir", {});
+    })
+</script>
+
+
+{% endif %}
+{% endif %}
+
+
+{% endblock %}

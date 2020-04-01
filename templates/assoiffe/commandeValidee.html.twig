@@ -29,25 +29,26 @@
                         <br><br><br><br><br><br>
                         <h1 style="vertical-align: text-middle ;color: white; font-family: 'Geneva'; font-size: 30px">Commande n°</h1>
                         <br><h1 style="color: white"><strong>4096</strong></h1>
-                            <br><br> <br><br><br> <br>
+                        <br><br> <br><br><br> <br>
                         <h1 style="vertical-align: text-bottom ;color: white; font-family: 'Geneva'; font-size: 16px">Des notifications vous <br> indiqueront l'état de votre <br> commande !</h1> 
-        
+                        
                     </div>
                     <div><br>
-                        <button class="btn btn-success btn-sm" id="auto"><strong>Cliquez ici pour être informé sur l'avancement de votre commande</strong></button><br> <br>
+                        <button class="btn btn-success btn-sm"  onclick="window.location.href='{{path('panier_index_assoiffe')}}'"  id="auto"><strong>Cliquez ici pour être informé sur l'avancement de votre commande</strong></button><br> <br>
                         <script>
+                          
                             var autentification = document.querySelector("#auto");
                             autentification.addEventListener("click",function(){ //demande la permission d'envoyer des notifs
                             Notification.requestPermission();
-                          })
-                        </script>
-                        <a class="btn btn-secondary btn-sm"  href="{{path('accueil_assoiffe')}}" ><strong>Revenir à l'accueil</strong></a>
-                    </div>
+                            
+                        })
+                    </script>
                 </div>
             </div>
-            
         </div>
-    </center>
-    
+        
+    </div>
+</center>
+
 </body>
 </html>
