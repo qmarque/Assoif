@@ -35,7 +35,6 @@ class PanierController extends AbstractController
         
         $total=0;
         $compteur=0;
-        $valider=0;
         foreach($panierWithData as $item){
             $totalItem=$item['produit']->getPrix() * $item['quantity'];
             $total+=$totalItem;
@@ -45,8 +44,7 @@ class PanierController extends AbstractController
             'items' => $panierWithData,
             'total' => $total,
             'action' => "assoiffe",
-            'compteur' => $compteur,
-            'valider' => $valider
+            'compteur' => $compteur
             ]);
         }
         /**
