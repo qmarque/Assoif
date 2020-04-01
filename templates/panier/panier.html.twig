@@ -79,10 +79,11 @@ Panier
 
         {% if action == "assoiffeur" %}
         <center>
+            {{ compteur }} <br>
             <strong>Commande n° 4096</strong><br><br>
-            <a class="btn btn-success " id="notifPrete" href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
+            <a class="btn btn-success " id="notifPrete" role="button" onclick="window.location.href='{{path('accueil_assoiffeur')}}'" {% set compteur =  compteur + 1 %} >Commande prête</a>
+            {{ compteur }} <br>
         </center>
-        {% set compteur =  compteur + 1 %}
         {% endif %}
     
         <script>
@@ -91,14 +92,16 @@ Panier
             var not = document.querySelector("#notifPreteRecue");
             })
         </script>
-
-
+       
         {% if action == "assoiffe" %}
-            {% if compteur > 0 %}
+            {% if compteur == 0 %}
+            
                 <br><center>
                 <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
                 </center>
-
+                <center>
+                    {{compteur}}
+                </center>
                 <script>
                     var not = document.querySelector("#notifPreteRecue");
                     not.addEventListener("click",function(){
@@ -106,6 +109,9 @@ Panier
                     })
                 </script>
                 {% else %}
+                <center>
+                    {{compteur}}
+                </center>
                     <br><center>
                     <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
                     </center>
