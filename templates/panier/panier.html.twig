@@ -27,8 +27,9 @@ Panier
                 <a href="{{ path('panier_remove', {'id' : item.produit.id}) }}" style="color: red">
                 <i class="icon-trash"></i>
             </a>
+            {% endif %}
+
         </td>
-        {% endif %}
         {% endfor  %}
         
     </tbody>
@@ -40,12 +41,14 @@ Panier
         </tr>
     </tfoot>
 </table>
-{% else %}
+
 {% endif %}
 {% if action == "assoiffe" %}
 <a class="btn btn-success btn-lg btn-block"  href="/assoiffe/panier/payer" role="button">Payer</a>
 {% else %}
-<a class="btn btn-success btn-lg btn-block"  href="{{path('accueil_assoiffeur')}}" role="button">Commande Prête</a>
+<center><br>
+<a class="btn btn-success "  href="{{path('accueil_assoiffeur')}}" role="button">Commande prête</a>
+</center>
 {% endif %}
 
 {% endblock %}
