@@ -66,6 +66,7 @@ class PanierController extends AbstractController
        // dd($panierWithData);
 
         $total=0;
+        $compteur=0;
         foreach($panierWithData as $item){
             $totalItem=$item['produit']->getPrix() * $item['quantity'];
             $total+=$totalItem;
@@ -74,7 +75,8 @@ class PanierController extends AbstractController
         return $this->render('panier/panier.html.twig', [
             'items' => $panierWithData,
             'total' => $total,
-            'action' => "assoiffeur"
+            'action' => "assoiffeur",
+            'compteur' => $compteur
         ]);
     }
     /**

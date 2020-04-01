@@ -60,6 +60,7 @@ class ProduitController extends AbstractController
         return $this->render('produit/index.html.twig', [
             'produits' => $produitRepository->findByType($typeproduit),
             'action' => "assoiffe",
+            'choices' => array([1=>'oui', 0=>'non'])
         ]);
         //Récupérer les produits en BD
         $produits = $repositoryProduit->findByType($typeproduit);
