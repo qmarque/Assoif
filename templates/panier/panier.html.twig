@@ -116,17 +116,26 @@ Panier
 {% if action == "assoiffe" %}
 {% if compteur > 0 %}
 <br><center>
-    <a class="btn btn-secondary " id="notifPreteRecue" href="{{path('panier_index_assoiffe')}}" role="button">Commande reçue ?</a>
+    <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
 </center>
 
 <script>
     var not = document.querySelector("#notifPreteRecue");
     not.addEventListener("click",function(){
-        notification = new Notification("Votre commande est prête, venez la chercher au comptoir", {});
+        notification = new Notification("Votre commande est prête !", {});
     })
 </script>
+{% else %}
+<br><center>
+    <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
+</center>
 
-
+<script>
+    var not = document.querySelector("#notifPreteRecue");
+    not.addEventListener("click",function(){
+        notification = new Notification("Votre commande n'est pas encore prête ", {});
+    })
+</script>
 {% endif %}
 {% endif %}
 
