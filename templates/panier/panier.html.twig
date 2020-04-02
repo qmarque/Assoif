@@ -69,14 +69,14 @@ Mes commandes
             var not = document.querySelector("#notifPreteRecue");
             })
         </script>
-       
+       <!-- {% set compteur = compteur + 1 %}-->
         {% if action == "assoiffe" %}
-            {% if compteur == 0 %}
+            {% if compteur > 0 %}
             
                 <br><center>
                 <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
                 </center>
-               
+              
                 <script>
                     var not = document.querySelector("#notifPreteRecue");
                     not.addEventListener("click",function(){
@@ -88,6 +88,8 @@ Mes commandes
                     <br><center>
                     <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
                     </center>
+
+
                 <script>
                     var not = document.querySelector("#notifPreteRecue");
                     not.addEventListener("click",function(){
@@ -96,7 +98,9 @@ Mes commandes
                 </script>
             {% endif %}  
         {% endif %}
-    {% else %}
+
+
+    {% else %}  <!-- Dans les cas où le panier est vide ou qu'il n'y ait pas de commandes -->
     {% if action == "assoiffe" %}
         <center><br>
         <h4>Votre panier est actuellement vide ...</h4><br>

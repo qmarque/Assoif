@@ -1,0 +1,37 @@
+{
+  
+  "content_scripts": [
+    {
+      "exclude_matches": ["*://developer.mozilla.org/*"],
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["borderify.js"]
+    }
+  ],
+
+  "default_locale": "fr",
+
+  "start_url":
+  "/",
+
+
+
+  "icons": {
+    "48": "biere.png",
+    "96": "biere.png"
+  },
+
+  "manifest_version": 2,
+
+  "name": "Assoif",
+
+  
+
+  "permissions": ["webNavigation"],
+
+  "version": "0.1",
+
+  "user_scripts": {
+    "api_script": "apiscript.js"
+  }
+
+}
