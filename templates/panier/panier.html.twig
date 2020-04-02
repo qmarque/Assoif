@@ -1,38 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'produit/index.html.twig' %}
 
 {% block titrePage %}
-Panier
+{% if action == "assoiffe" %}
+Mon panier
+
+    {% else %}
+Mes commandes
+ {% endif %}
 {% endblock %}
 
-{% block menu %}
-        {% if action == "assoiffe" %}
-            <nav class="navbar navbar-expand navbar-dark bg-dark" >
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav mr-auto">
-            
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{path('accueil_assoiffe')}}">Accueil <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-        
-                    <ul class="navbar-nav ml-md-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/assoiffe/panier">
-                                <i class="icon-shopping-basket"></i>
-                                Mon panier
-                            <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
-        
-                </div>
-            </nav>
 
-        {% endif %}
-{% endblock %}
 {% block contenu %}
     {% if items | length > 0 %}
         <table class="table">
@@ -79,10 +56,10 @@ Panier
 
         {% if action == "assoiffeur" %}
         <center>
-            {{ compteur }} <br>
+           
             <strong>Commande n° 4096</strong><br><br>
-            <a class="btn btn-success " id="notifPrete" role="button" onclick="window.location.href='{{path('accueil_assoiffeur')}}'" {% set compteur =  compteur + 1 %} >Commande prête</a>
-            {{ compteur }} <br>
+            <a class="btn btn-success " id="notifPrete" style="color: white;" role="button" onclick="window.location.href='{{path('accueil_assoiffeur')}}'" {% set compteur =  compteur + 1 %} >Commande prête</a>
+          
         </center>
         {% endif %}
     
@@ -97,11 +74,9 @@ Panier
             {% if compteur == 0 %}
             
                 <br><center>
-                <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande reçue ?</a>
+                <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
                 </center>
-                <center>
-                    {{compteur}}
-                </center>
+               
                 <script>
                     var not = document.querySelector("#notifPreteRecue");
                     not.addEventListener("click",function(){
@@ -109,9 +84,7 @@ Panier
                     })
                 </script>
                 {% else %}
-                <center>
-                    {{compteur}}
-                </center>
+            
                     <br><center>
                     <a class="btn btn-secondary " id="notifPreteRecue" style="color: white;" role="button">Commande prête ?</a>
                     </center>
@@ -124,11 +97,15 @@ Panier
             {% endif %}  
         {% endif %}
     {% else %}
+    {% if action == "assoiffe" %}
         <center><br>
         <h4>Votre panier est actuellement vide ...</h4><br>
         <a class="nav-link" href="{{path('accueil_assoiffe')}}">Ajouter des produits au panier</a>
         </center>
+         {% else %}
+          <center><br>
+        <h4>Vous n'avez pas de commandes à traiter ...</h4><br>
     {% endif %}
-
+  {% endif %}
 
 {% endblock %}
