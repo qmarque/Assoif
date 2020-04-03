@@ -27,7 +27,15 @@ Mes commandes
                     <tr></tr>
                         <td>{{item.produit.nom}}</td>
                         <td>{{item.produit.prix}}</td>
-                        <td>{{item.quantity}}</td>
+                        <td> {% if action == "assoiffe" %}
+                            <a  href="{{ path('panier_less' , {'id' : item.produit.id}) }}" > <i class="icon-minus-circled"></i></a>
+                            {% endif %}
+                            {{item.quantity}} 
+                            {% if action == "assoiffe" %}
+                            <a  href="{{ path('panier_add' , {'id' : item.produit.id}) }}" role="button">  <i class="icon-plus-circled"></i></i></a>
+
+                           
+                            {% endif %}</td>
                         <td>{{item.produit.prix * item.quantity}}€</td>
                     <td>
                         {% if action == "assoiffe" %}

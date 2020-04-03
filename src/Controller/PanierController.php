@@ -111,4 +111,20 @@ class PanierController extends AbstractController
                 $session->set('panier', $panier);
                 return $this->redirectToRoute("panier_index_assoiffe");
             }
+
+             /**
+            * @Route("/panier/less/{id}", name="panier_less")
+            */
+            public function less($id, SessionInterface $session)
+            {
+                $panier = $session->get('panier', []); // récupération du panier
+                if(!(empty($panier[$id]))&& (!($panier[$id]==1))){
+                    $panier[$id]--;
+                }
+                else if($panier[$id]<=1){
+                    unset($panier[$id]);
+                }
+                $session->set('panier', $panier);
+                return $this->redirectToRoute("panier_index_assoiffe");
+            }
         }
