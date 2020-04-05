@@ -26,7 +26,7 @@ class ProduitController extends AbstractController
 
 
     /**
-     * @Route("assoiffeur/produit/{typeproduit}", name="produit_par_typeProduit_index_assoiffeur", methods={"GET"})
+     * @Route("assoiffeur/typeproduit/{typeproduit}", name="produit_par_typeProduit_index_assoiffeur", methods={"GET"})
      */
     public function indexProduitsParTypeProduitAssoiffeur(ProduitRepository $produitRepository, $typeproduit): Response
     {
@@ -53,7 +53,7 @@ class ProduitController extends AbstractController
         ]);
     }
     /**
-     * @Route("assoiffe/produit/{typeproduit}", name="produit_par_typeProduit_index_assoiffe", methods={"GET"})
+     * @Route("assoiffe/typeproduit/{typeproduit}", name="produit_par_typeProduit_index_assoiffe", methods={"GET"})
      */
     public function indexProduitsParTypeProduitAssoiffe(ProduitRepository $produitRepository, $typeproduit): Response
     {

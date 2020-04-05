@@ -40,7 +40,7 @@ class TypeProduitController extends AbstractController
 
 
     /**
-     * @Route("assoiffe/produit/{id}", name="type_produit_show_assoiffe", methods={"GET"})
+     * @Route("assoiffe/typeproduit/{id}", name="type_produit_show_assoiffe", methods={"GET"})
      */
     public function showAssoiffe(TypeProduit $typeProduit): Response
     {
@@ -52,7 +52,7 @@ class TypeProduitController extends AbstractController
 
 
     /**
-     * @Route("assoiffeur/produit/{id}", name="type_produit_show_assoiffeur", methods={"GET"})
+     * @Route("assoiffeur/typeproduit/{id}", name="type_produit_show_assoiffeur", methods={"GET"})
      */
     public function showAssoiffeur(TypeProduit $typeProduit): Response
     {
